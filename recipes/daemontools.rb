@@ -25,6 +25,7 @@ include_recipe "redis::source"
 
 daemontools_service "redis" do
   directory "redis"
+  template 'redis'
   owner "redis"
   group "redis"
   log true
