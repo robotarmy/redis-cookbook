@@ -1,16 +1,17 @@
-maintainer        "Paper Cavalier"
-maintainer_email  "code@papercavalier.com"
+maintainer        "Curtis Schofield"
+maintainer_email  "chef@robotarmyma.de"
 license           "Apache 2.0"
-description       "Installs and configures Redis 2.0.4"
-version           "0.1.6"
+description       "Installs and configures Redis 2.0.4 with Daemontools - ancestor of Paper Cavalier redis"
+version           "1.0.0"
 
-recipe "redis::source", "Installs redis from source and adds init script"
+recipe "redis::source", "Installs redis from source and adds init script - uses daemontools"
 
 %w{ ubuntu debian }.each do |os|
   supports os
 end
 
 depends "build-essential"
+depends "daemontools"
 
 
 

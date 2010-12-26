@@ -3,8 +3,10 @@
 # Recipe:: slave
 #
 # Author:: Gerhard Lazu (<gerhard.lazu@papercavalier.com>)
+# Author:: Curtis Schofield (<curtis@robotarmyma.de>)
 #
 # Copyright 2010, Paper Cavalier, LLC
+# Copyright 2010, Curtis Schofield
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,4 +25,5 @@
 node.set[:redis][:slaveof] = search(:node, 'recipes:redis\:\:master').first.ec2.local_hostname
 
 include_recipe "redis::source"
+include_recipe "redis::daemon"
 
