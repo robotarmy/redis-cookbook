@@ -24,6 +24,10 @@ include_recipe "daemontools"
 include_recipe "redis::source"
 
 daemontools_service "redis" do
+  directory "redis"
+  owner "redis"
+  group "redis"
+  log true
   supports :start => true, 
           :stop => true, 
           :restart => true
