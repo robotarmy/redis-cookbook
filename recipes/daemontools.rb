@@ -26,8 +26,8 @@ include_recipe "redis::source"
 daemontools_service "redis" do
   directory '/etc/sv-redis'
   template "redis"
-  owner "redis"
-  group "redis"
+  owner node[:redis][:user]
+  group node[:redis][:group]
   log true 
   supports :start   => true, 
            :stop    => true, 
