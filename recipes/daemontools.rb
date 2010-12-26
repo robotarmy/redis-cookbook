@@ -24,14 +24,14 @@ include_recipe "daemontools"
 include_recipe "redis::source"
 
 daemontools_service "redis" do
-  directory "redis"
+  directory '/etc/sv-redis'
   template "redis"
   owner "redis"
   group "redis"
   log true
-  supports :start => true, 
-          :stop => true, 
-          :restart => true
+  supports :start   => true, 
+           :stop    => true, 
+           :restart => true
   action [:enable, :start]
   subscribes :restart, resources(:template => node[:redis][:config])
 end
