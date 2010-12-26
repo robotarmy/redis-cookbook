@@ -2,10 +2,6 @@
 # ANY MANUAL MODIFICATIONS WILL BE OVERWRITTEN
 # Redis configuration file
 
-# When run as a daemon, Redis write a pid file in /var/run/redis.pid by default.
-# You can specify a custom pid file location here.
-pidfile <%= @node[:redis][:pidfile] %>
-
 # Accept connections on the specified port, default is 6379
 port <%= @node[:redis][:port] %>
 

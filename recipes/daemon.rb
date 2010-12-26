@@ -1,10 +1,10 @@
 #
 # Cookbook Name:: redis
-# Recipe:: source
+# Recipe:: daemon-redis
 #
-# Author:: Gerhard Lazu (<gerhard.lazu@papercavalier.com>)
+# Author:: Curtis Schofield (<curtis@robotarmyma.de>)
 #
-# Copyright 2010, Paper Cavalier, LLC
+# Copyright 2010, Curtis Schofield
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,14 +18,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-#
-include_recipe "build-essential"
-include_recipe "daemontools"
-include_recipe "redis::source"
+
+
 
 daemontools_service "redis" do
-  directory '/etc/sv-redis'
   template "redis"
+  directory node[:redis][:sv]
   owner node[:redis][:user]
   group node[:redis][:group]
   log true 
@@ -35,3 +33,4 @@ daemontools_service "redis" do
   action [:enable, :start]
   subscribes :restart, resources(:template => node[:redis][:config])
 end
+
