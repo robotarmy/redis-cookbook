@@ -23,7 +23,8 @@ include_recipe "build-essential"
 include_recipe "daemontools"
 include_recipe "redis::source"
 
-daemontools_service "redis" do
+service "redis" do
+  provider daemontools_service
   directory "redis"
   owner "redis"
   group "redis"
