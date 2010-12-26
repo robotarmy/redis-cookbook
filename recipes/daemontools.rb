@@ -20,9 +20,10 @@
 #
 #
 include_recipe "build-essential"
+include_recipe "daemontools"
 include_recipe "redis::source"
 
-daemontools "redis" do
+service "redis" do
   supports :start => true, :stop => true, :restart => true
   action [:enable, :start]
   subscribes :restart, resources(:template => node[:redis][:config])
