@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: redis
-# Recipe:: default
+# Recipe:: source
 #
 # Author:: Gerhard Lazu (<gerhard.lazu@papercavalier.com>)
 # Author:: Curtis Schofield (<curtis@robotarmyma.de>)
@@ -20,8 +20,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+#
+template "/etc/init.d/redis" do
+  source "redis.init.erb"
+  mode 0755
+  backup false
+end
 
-include_recipe "build-essential"
-include_recipe "redis::source"
-include_recipe "redis::daemontools"
-
+service "redis" do
+  supports :start => true, :stop => true, :restart => true
+  action [:enable, :start]
+  subscribes :restart, resources(:template => node[:redis][:config])
+  subscribes :restart, resources(:template => "/etc/init.d/redis")
+end
