@@ -1,0 +1,4 @@
+#!/bin/sh
+exec 2>&1
+DAEMON=<%= @node[:redis][:dir] %>/bin/redis-server
+exec setuidgid <%= @node[:redis][:user] %> $DAEMON <%= @node[:redis][:config] %>

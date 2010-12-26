@@ -8,8 +8,11 @@ default[:redis][:bins]      = %w(redis-benchmark redis-cli redis-server mkreleas
 default[:redis][:dir]       = "/opt/redis-#{redis[:version]}"
 default[:redis][:datadir]   = "/var/db/redis"
 default[:redis][:config]    = "/etc/redis.conf"
-default[:redis][:logfile]   = "/var/log/redis.log"
+default[:redis][:logfile]   = "stdout" # breaks compatability with initd
 default[:redis][:pidfile]   = "/var/run/redis.pid"
+
+default[:redis][:user]        = 'redis'
+default[:redis][:group]        = 'redis'
 
 default[:redis][:port]        = 6379
 default[:redis][:timeout]     = 300
