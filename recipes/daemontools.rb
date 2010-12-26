@@ -1,12 +1,10 @@
 #
 # Cookbook Name:: redis
-# Recipe:: default
+# Recipe:: source
 #
 # Author:: Gerhard Lazu (<gerhard.lazu@papercavalier.com>)
-# Author:: Curtis Schofield (<curtis@robotarmyma.de>)
 #
 # Copyright 2010, Paper Cavalier, LLC
-# Copyright 2010, Curtis Schofield
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,8 +18,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+#
 
-include_recipe "build-essential"
-include_recipe "redis::source"
-include_recipe "redis::daemontools"
-
+daemontools "redis" do
+  supports :start => true, :stop => true, :restart => true
+  action [:enable, :start]
+  subscribes :restart, resources(:template => node[:redis][:config])
+end

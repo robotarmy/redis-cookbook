@@ -3,8 +3,10 @@
 # Recipe:: source
 #
 # Author:: Gerhard Lazu (<gerhard.lazu@papercavalier.com>)
+# Author:: Curtis Schofield (<curtis@robotarmyma.de>)
 #
 # Copyright 2010, Paper Cavalier, LLC
+# Copyright 2010, Curtis Schofield
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,7 +21,6 @@
 # limitations under the License.
 #
 
-include_recipe "build-essential"
 
 user "redis" do
   comment "Redis Administrator"
@@ -91,15 +92,3 @@ template node[:redis][:config] do
   backup false
 end
 
-template "/etc/init.d/redis" do
-  source "redis.init.erb"
-  mode 0755
-  backup false
-end
-
-service "redis" do
-  supports :start => true, :stop => true, :restart => true
-  action [:enable, :start]
-  subscribes :restart, resources(:template => node[:redis][:config])
-  subscribes :restart, resources(:template => "/etc/init.d/redis")
-end
