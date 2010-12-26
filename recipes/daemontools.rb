@@ -28,7 +28,7 @@ daemontools_service "redis" do
   template "redis"
   owner "redis"
   group "redis"
-  log true
+  log true 
   supports :start   => true, 
            :stop    => true, 
            :restart => true
