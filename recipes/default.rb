@@ -23,5 +23,5 @@
 
 include_recipe "build-essential"
 include_recipe "redis::source"
-include_recipe "redis::daemontools"
+include_recipe "redis::initd"
 

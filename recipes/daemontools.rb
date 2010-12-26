@@ -19,6 +19,8 @@
 # limitations under the License.
 #
 #
+include_recipe "build-essential"
+include_recipe "redis::source"
 
 daemontools "redis" do
   supports :start => true, :stop => true, :restart => true
