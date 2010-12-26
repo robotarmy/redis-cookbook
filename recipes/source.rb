@@ -76,14 +76,6 @@ unless `ps -A -o command | grep "[r]edis"`.include?(node[:redis][:version])
   end
 end
 
-file node[:redis][:logfile] do
-  owner "redis"
-  group "redis"
-  mode 0644
-  action :create_if_missing
-  backup false
-end
-
 template node[:redis][:config] do
   source "redis.conf.erb"
   owner "redis"

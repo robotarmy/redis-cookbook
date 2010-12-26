@@ -21,6 +21,16 @@
 # limitations under the License.
 #
 #
+
+
+file node[:redis][:logfile] do
+  owner "redis"
+  group "redis"
+  mode 0644
+  action :create_if_missing
+  backup false
+end
+
 template "/etc/init.d/redis" do
   source "redis.init.erb"
   mode 0755
