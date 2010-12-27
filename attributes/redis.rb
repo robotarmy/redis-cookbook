@@ -8,6 +8,7 @@ default[:redis][:bins]      = %w(redis-benchmark redis-cli redis-server mkreleas
 default[:redis][:dir]       = "/opt/redis-#{redis[:version]}"
 default[:redis][:datadir]   = "/var/db/redis"
 default[:redis][:sv]        = "/etc/redis/sv"
+default[:redis][:etc]       = "/etc/redis"
 default[:redis][:config]    = "/etc/redis/redis.conf"
 default[:redis][:logfile]   = "stdout" 
 

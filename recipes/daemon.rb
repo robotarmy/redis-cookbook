@@ -20,7 +20,6 @@
 #
 
 
-
 daemontools_service "redis" do
   template "redis"
   directory node[:redis][:sv]

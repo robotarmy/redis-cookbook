@@ -28,7 +28,7 @@ user "redis" do
   shell "/bin/false"
 end
 
-[node[:redis][:dir], "#{node[:redis][:dir]}/bin", node[:redis][:datadir]].each do |dir|
+[node[:redis][:etc], node[:redis][:dir], "#{node[:redis][:dir]}/bin", node[:redis][:datadir]].each do |dir|
   directory dir do
     owner "redis"
     group "redis"
